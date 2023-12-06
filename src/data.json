@@ -1,0 +1,29 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "title": "hats",
+      "img": "/src/assets/hero__1.jpg"
+    },
+    {
+      "id": 5,
+      "title": "jakets",
+      "img": "/src/assets/hero__1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "sneakers",
+      "img": "/src/assets/hero__1.jpg"
+    },
+    {
+      "id": 3,
+      "title": "womens",
+      "img": "/src/assets/hero__1.jpg"
+    },
+    {
+      "id": 4,
+      "title": "mens",
+      "img": "/src/assets/hero__1.jpg"
+    }
+  ]
+}
