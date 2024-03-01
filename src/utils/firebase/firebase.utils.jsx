@@ -27,8 +27,13 @@ provider.setCustomParameters({
   prompt: 'select_account',
 });
 
-export const auth = getAuth();
+/** 
+  استخدم هذا النطاقات من أجل تحديد الوصول للمستخدمين يمكنك قراءة المزيد في Docs 
+  */
+// provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
+export const auth = getAuth();
+auth.languageCode = 'it';
 export const GooglesignInWithPopup = () => signInWithPopup(auth, provider);
 export const GoogleSignInWithRedirect = () =>
   signInWithRedirect(auth, provider);

@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
+
+import { UserContext } from '../../context/user.context';
+
 const navigation = () => {
+  const { currentUser } = useContext(UserContext);
+  console.log(currentUser);
+
   return (
     <>
       <div className='navigation p-5 flex justify-between items-center'>
