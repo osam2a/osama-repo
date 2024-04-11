@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { NumberUser, UserContext } from '../../context/user.context';
+import { UserContext } from '../../context/user.context';
+import { NumberUser } from '../../context/user.context';
 const About = () => {
   const { currentNumber, setNumber } = useContext(NumberUser);
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   console.log(currentNumber);
   return (
     <div>
@@ -10,7 +11,9 @@ const About = () => {
       <button
         type='button'
         className='block  active:bg-green-600 hover:bg-white rounded-xl bg-black transition-all text-3xl text-red-500 hover:text-black text bg-center px-2 py-3 m-auto my-7'
-        onClick={() => setNumber(currentNumber - 1)}
+        onClick={() => {
+          setNumber(currentNumber - 1);
+        }}
       >
         decrees
       </button>

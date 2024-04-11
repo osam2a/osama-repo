@@ -3,11 +3,11 @@ const btnClass = {
   google: 'google-sign-in',
   inverted: 'inverted',
 };
-const Button = ({ children, buttonType, ...otherOption }) => {
+const Button = ({ children, buttonType, moreProps, ...otherOption }) => {
   // console.log(className);
   return (
     <button
-      className={`buttonContainer ${btnClass[buttonType]} `}
+      className={`buttonContainer uppercase ${btnClass[buttonType]} ${moreProps} `}
       {...otherOption}
     >
       {children}

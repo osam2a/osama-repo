@@ -5,12 +5,14 @@ import {
   signUpUsingEmailAndPassword,
   getDataFromAuht,
 } from '../../utils/firebase/firebase.utils';
+
 const defaultForm = {
   displayName: '',
   email: '',
   password: '',
   confirmPassword: '',
 };
+
 const signUpForm = () => {
   const [formFields, setFormFields] = useState(defaultForm);
   const { displayName, email, password, confirmPassword } = formFields;
