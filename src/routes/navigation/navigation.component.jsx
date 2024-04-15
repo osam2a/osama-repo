@@ -30,9 +30,9 @@ const navigation = () => {
             <Link to='/shop'>SHOP</Link>
           </div>
 
-          {/* <div>
-            <Link to='/test'>CARDS</Link>
-          </div> */}
+          <div>
+            <Link to='/cheackout'>CHEAKOUT</Link>
+          </div>
 
           <div>
             <Link to='/about'>ABOUT</Link>

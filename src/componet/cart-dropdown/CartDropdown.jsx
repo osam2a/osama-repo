@@ -1,36 +1,33 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartsContext } from '../../context/Cart.context';
 import Button from '../button/Button.component';
-
+import CartItem from '../CartItem/CartItem.component';
 const CartDropdown = () => {
-  const once = (fn) => {
-    let done = false;
-    return (...args) => {
-      if (!done) {
-        done = true;
-
-        fn(...args);
-      } else done = false;
-    };
+  const { items } = useContext(CartsContext);
+  const navigate = useNavigate();
+  const goToCheackoutHundler = () => {
+    navigate('/cheackout');
   };
-
-  const print = () => {
-    console.log(`hi`);
-  };
-  const hh = once(print);
-  once(print);
-  once(print);
   return (
     <div
-      className={` cart-dropdown-container bg-white w-48 h-80 border border-black absolute z-50 -right-4 top-16`}
+      className={` cart-dropdown-container bg-white w-52 h-96 border border-black absolute z-50 -right-4 top-16`}
     >
-      <div className='cart-items h-4/5'></div>
+      <div className='cart-items h-4/5 overflow-auto mb-3 flex flex-col gap-5 p-2 '>
+        {items.length > 0 ? (
+          items.map((item, index) => {
+            return <CartItem key={index} props={item} />;
+          })
+        ) : (
+          <h1 className='text-center font-extrabold uppercase text-xl m-auto text-cyan-600'>
+            it is empaty
+          </h1>
+        )}
+      </div>
       <Button
-        onClick={() => {
-          hh();
-        }}
+        onClick={goToCheackoutHundler}
         type='button'
-        moreProps='m-auto  block '
+        moreProps='m-auto block '
       >
         go to cheakout
       </Button>

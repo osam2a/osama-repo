@@ -8,16 +8,10 @@ export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,
 });
-export const NumberUser = createContext({
-  currentNumber: null,
-  setNumber: () => null,
-});
+
 const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
-
-  const [currentNumber, setNumber] = useState(0);
-  const valNumber = { currentNumber, setNumber };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
@@ -27,12 +21,7 @@ const UserProvider = ({ children }) => {
     // console.log(unsubscribe());
     return unsubscribe;
   }, []);
-  return (
-    <NumberUser.Provider value={valNumber}>
-      {' '}
-      <UserContext.Provider value={value}>{children}</UserContext.Provider>
-    </NumberUser.Provider>
-  );
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
 export { UserProvider };
