@@ -5,7 +5,7 @@ import Navigation from './routes/navigation/navigation.component';
 import About from './routes/about/About';
 import Shop from './routes/shop/shop.component';
 import Authentication from './authentication/authentication.component';
-// import Cheackout from './routes/cheackout/Cheackout.page';
+import Cheackout from './routes/cheackout/Cheackout.page';
 import './App.css';
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
           <Route index={true} element={<Home />} />
           <Route path='shop' element={<Shop />} />
           <Route path='auth' element={<Authentication />} />
-{/*           <Route path='cheackout' element={<Cheackout />} /> */}
+          <Route path='cheackout' element={<Cheackout />} />
           <Route path='about' element={<About />} />
         </Route>
       </Routes>
