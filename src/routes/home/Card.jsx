@@ -1,15 +1,21 @@
+import { useNavigate } from 'react-router-dom';
+import Button from '../../componet/button/Button.component';
 const Card = (props) => {
   const { id, title, img } = props;
+  const navigate = useNavigate();
+  const moveToCategory = () => navigate(`/shop/${title}`);
   return (
     <div
       key={id}
       id={id}
-      className='list-disc bg-green-400  w-52 h-52 flex justify-center items-center bg-'
+      onClick={moveToCategory}
+      className={`group bg-[url( ".${img}")] bg-gray-500 bg-center bg-[length:100%] bg-no-repeat transition-all hover:bg-[length:110%]
+      min-w-[30%] h-60 flex grow shrink basis-1 items-center justify-center border border-black overflow-hidden cursor-pointer `}
     >
-      <div className='border flex justify-center items-center flex-col gap-2  p-2 w-fit '>
-        <h1 className='text-xl font-bold'>{title}</h1>
+      <Button buttonType='inverted'>
+        <h1 className='text-xl font-bold'>{title.toUpperCase()}</h1>
         <p>SHOP NOW</p>
-      </div>
+      </Button>
     </div>
   );
 };

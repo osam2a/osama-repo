@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import FormInput from '../form-input/FormInput.component';
-import Button from '../button/Button.component';
 import {
   signUpUsingEmailAndPassword,
   getDataFromAuht,
 } from '../../utils/firebase/firebase.utils';
+
+import FormInput from '../form-input/FormInput.component';
+import Button from '../button/Button.component';
 
 const defaultForm = {
   displayName: '',

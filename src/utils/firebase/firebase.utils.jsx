@@ -1,5 +1,16 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from 'firebase/firestore';
+
 import {
   getAuth,
   signInWithRedirect,
@@ -24,9 +35,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+const provider = new GoogleAuthProvider(); //هنا تعيد رمز المصادقة الخاص بنا مع كوكل و هو يختلف في كل مرة
+
 provider.setCustomParameters({
-  prompt: 'select_account',
+  prompt: 'select_account', //هنا تجبر المستخدم على اختيار حساب في كل مرة يتفاعل بها المستخدم مع الموقع
 });
 
 /** 
@@ -34,13 +46,43 @@ provider.setCustomParameters({
   */
 // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
-export const auth = getAuth();
+export const auth = getAuth(); // هنا سأقوم بتصدير مفتاح المصادقة ختى أستطيع استخدماه في مشرعي
+
 auth.languageCode = 'it';
+
 export const GooglesignInWithPopup = () => signInWithPopup(auth, provider);
+
 export const GoogleSignInWithRedirect = () =>
   signInWithRedirect(auth, provider);
 
 export const db = getFirestore();
+export const addCollectionAndDcuments = async (
+  collecationKey,
+  objectsToAdd,
+  field
+) => {
+  const collectionRef = collection(db, collecationKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object[field].toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log(`done`);
+};
+export const getCollectionAndDcuments = async () => {
+  const collectionRef = collection(db, `categories`);
+  const q = query(collectionRef);
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return categoryMap;
+};
 
 export const getDataFromAuht = async (userAuth, additionalInfo) => {
   const userDocRef = doc(db, 'users', userAuth.uid);

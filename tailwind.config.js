@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin');
+import plugin from './node_modules/tailwindcss/plugin';
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -35,7 +35,6 @@ export default {
 
           ' &:hover': {
             backgroundColor: ' #357ae8',
-            border: '1px solid white',
           },
         },
 

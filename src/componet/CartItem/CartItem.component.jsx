@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { CartsContext } from '../../context/Cart.context';
 import Tarch from '../FontAwesomeIcon/tarch/Tarch.component';
 import Button from '../button/Button.component';
+
 const CartItem = ({ props }) => {
   const { id, name, imageUrl, price, quntity } = props;
 

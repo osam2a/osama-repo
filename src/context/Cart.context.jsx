@@ -51,29 +51,43 @@ export const CartsProvider = ({ children }) => {
   const [cartCounter, setCartCounter] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(() => {
+  const setTotalPriceEffect = useEffect(() => {
     const newCartCounter = items.reduce(
       (total, cartItem) => total + cartItem.quntity,
       0
     );
+    setCartCounter(newCartCounter);
+  }, [items]);
+
+  const setQuntityEffect = useEffect(() => {
     const newTotalPrice = items.reduce(
       (total, cartItem) => (total += cartItem.quntity * cartItem.price),
       0
     );
-
-    setCartCounter(newCartCounter);
     setTotalPrice(newTotalPrice);
   }, [items]);
 
+  const getItemsFromLocalStorage = useEffect(() => {
+    if (localStorage.getItem(`pro`))
+      setItems(JSON.parse(localStorage.getItem(`pro`)));
+  }, []);
+
   const addItemToCart = (productToAdd) => {
-    setItems(addCartItem(items, productToAdd));
+    const newItem = addCartItem(items, productToAdd);
+    localStorage.setItem(`pro`, JSON.stringify(newItem));
+    setItems(newItem);
   };
 
   const removeItemFromCart = (productToRemove) => {
-    setItems(removeCartItem(items, productToRemove));
+    const removeItem = removeCartItem(items, productToRemove);
+    setItems(removeItem);
+    localStorage.setItem(`pro`, JSON.stringify(removeItem));
   };
+
   const clearCart = (productToClear) => {
-    setItems(clearItem(items, productToClear));
+    const clearCart = clearItem(items, productToClear);
+    setItems(clearCart);
+    localStorage.setItem(`pro`, JSON.stringify(clearCart));
   };
   const value = {
     isCartOpen,
